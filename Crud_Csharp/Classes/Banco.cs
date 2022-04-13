@@ -19,7 +19,7 @@ namespace Crud_Csharp.Classes
             MySqlCommand cmdSQL = new MySqlCommand();
 
             // String de conexão
-            string stringDeConexao = @"server=localhost;database=db_cliente;user id=root;password=;port=3306";
+            string stringDeConexao = @"server=localhost;database=crud_csharp;user id=root;password=;port=3306";
 
             // Conectando
             MySqlConnection conexao = new MySqlConnection(stringDeConexao);
