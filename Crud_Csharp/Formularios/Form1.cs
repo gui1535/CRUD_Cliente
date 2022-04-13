@@ -71,9 +71,89 @@ namespace Crud_Csharp
                 // Execute
                 banco.ExecuteNonQuery();
 
+                // Limpar parametros
+                banco.Parameters.Clear();
 
                 // Fecha Conexão
                 banco.Connection.Close();
+            }
+            catch (Exception ex)
+            {
+
+            }
+        }
+
+        private void btnExcluir_Click(object sender, EventArgs e)
+        {
+            try // Tente
+            {
+                // Abrir conexão
+                var banco = Banco.Abrir();
+
+                banco.CommandText = "delete from cad_cliente where id = @id";
+
+                // Parametros
+                banco.Parameters.AddWithValue("@id", txtId.Text);
+
+                // Execute
+                banco.ExecuteNonQuery();
+
+                // Limpar parametros
+                banco.Parameters.Clear();
+
+                // Fecha Conexão
+                banco.Connection.Close();
+            }
+            catch (Exception ex)
+            {
+
+            }
+        }
+
+        private void btnConsultar_Click(object sender, EventArgs e)
+        {
+            try // Tente
+            {
+                // Abrir conexão
+                var banco = Banco.Abrir();
+
+                banco.CommandText = "select * from cad_cliente where id = @id";
+
+                // Parametros
+                banco.Parameters.AddWithValue("@id", txtId.Text);
+
+                // Var de leitura
+                var dr = banco.ExecuteReader();
+
+                // Consulta
+                while (dr.Read())
+                {
+                    txtNome.Text = Convert.ToString(dr["nome"]);
+                    txtNumero.Text = Convert.ToString(dr["numero"]);
+                }
+            }
+            catch (Exception ex)
+            {
+
+            }
+        }
+
+        private void btnExibir_Click(object sender, EventArgs e)
+        {
+            try // Tente
+            {
+                // Abrir conexão
+                var banco = Banco.Abrir();
+
+                banco.CommandText = "select * from cad_cliente";
+
+                var da = new MySqlDataAdapter(banco);
+
+                DataTable dt = new DataTable();
+
+                da.Fill(dt);
+
+                gridClientes.DataSource = dt;
             }
             catch (Exception ex)
             {
