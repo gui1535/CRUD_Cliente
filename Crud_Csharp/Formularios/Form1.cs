@@ -61,18 +61,16 @@ namespace Crud_Csharp
                 // Abrir conexão
                 var banco = Banco.Abrir();
 
-                banco.CommandText = "insert cad_cliente set nome = @nome, numero = @numero where id - @id";
+                banco.CommandText = "update cad_cliente set nome = @nome, numero = @numero where id = @id";
 
                 // Parametros
                 banco.Parameters.AddWithValue("@id", txtId.Text);
                 banco.Parameters.AddWithValue("@nome", txtNome.Text);
-                banco.Parameters.AddWithValue("@nome", txtNumero.Text);
+                banco.Parameters.AddWithValue("@numero", txtNumero.Text);
 
                 // Execute
                 banco.ExecuteNonQuery();
 
-                // Limpar parametros
-                banco.Parameters.Clear();
 
                 // Fecha Conexão
                 banco.Connection.Close();
