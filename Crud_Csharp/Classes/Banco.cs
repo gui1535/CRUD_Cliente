@@ -1,12 +1,15 @@
-﻿using MySql.Data.MySqlClient;
-using System;
+﻿using System;
+using System.Collections.Generic;
 using System.Data;
-
-namespace ClassLabNu
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using MySql.Data.MySqlClient;
+namespace Crud_Csharp.Classes
 {
     /// <summary>
-    /// Conectar no banco
-    /// </summary>
+     /// Conectar no banco
+     /// </summary>
     public static class Banco
     {
         // Metodo Conexão
@@ -16,7 +19,7 @@ namespace ClassLabNu
             MySqlCommand cmdSQL = new MySqlCommand();
 
             // String de conexão
-            string stringDeConexao = @"server=localhost;database=comercialdb0191;user id=root;password=;port=3306";
+            string stringDeConexao = @"server=localhost;database=db_cliente;user id=root;password=;port=3306";
 
             // Conectando
             MySqlConnection conexao = new MySqlConnection(stringDeConexao);

@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Crud_Csharp.Classes;
 using MySql.Data.MySqlClient;
 
 namespace Crud_Csharp
@@ -23,6 +24,63 @@ namespace Crud_Csharp
         private void Form1_Load(object sender, EventArgs e)
         {
 
+        }
+
+        private void btnNovo_Click(object sender, EventArgs e)
+        {
+            try // Tente
+            {
+                // Abrir conexão
+                var banco = Banco.Abrir();
+
+                banco.CommandText = "insert into cad_cliente(nome, numero) values(@nome, @numero)";
+
+                // Parametros
+                banco.Parameters.AddWithValue("@nome", txtNome.Text);
+                banco.Parameters.AddWithValue("@numero", txtNumero.Text);
+
+                // Execute
+                banco.ExecuteNonQuery();
+
+                // Limpar parametros
+                banco.Parameters.Clear();
+
+                // Fecha Conexão
+                banco.Connection.Close();
+            }
+            catch (Exception ex)
+            {
+
+            }
+        }
+
+        private void btnEditar_Click(object sender, EventArgs e)
+        {
+            try // Tente
+            {
+                // Abrir conexão
+                var banco = Banco.Abrir();
+
+                banco.CommandText = "insert cad_cliente set nome = @nome, numero = @numero where id - @id";
+
+                // Parametros
+                banco.Parameters.AddWithValue("@id", txtId.Text);
+                banco.Parameters.AddWithValue("@nome", txtNome.Text);
+                banco.Parameters.AddWithValue("@nome", txtNumero.Text);
+
+                // Execute
+                banco.ExecuteNonQuery();
+
+                // Limpar parametros
+                banco.Parameters.Clear();
+
+                // Fecha Conexão
+                banco.Connection.Close();
+            }
+            catch (Exception ex)
+            {
+
+            }
         }
     }
 }
